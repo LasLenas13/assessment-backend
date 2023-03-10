@@ -29,15 +29,40 @@ const getFortune = () => {
 complimentBtn.addEventListener('click', getCompliment)
 fortuneButton.addEventListener('click', getFortune)
 
-zenForm.addEventListener('submit', (e) => {
-    e.preventDefault()
+zenForm.addEventListener('submit', (event) => {
+    event.preventDefault()
 
     const zenBody ={
         name: zenName.value,
         temperament: zenTemp.value,
     }
 
-    axios.post("http://localhost:4000/zen", zenForm).then(() => {
-        console.log("backend up")
-    })
+    axios.post("http://localhost:4000/api/zen", zenBody).then((result) => {
+        alert("New Mind State")
+        console.log(result.data)
+    }).catch((err) => {})
+})
+
+mindForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+
+    let name = improveMind.value
+
+    axios.put("http://localhost:4000/api/mindful?name=" + name)
+    .then((result) => {
+        alert(name + "one step closer to Nirvana")
+        console.log(result.data)
+    }).catch((err) => {})
+})
+
+oneForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+
+    let name = oneNess.value
+
+    axios.delete("http://localhost:4000/api/oneness/" + name)
+    .then((result) => {
+        alert(name + "is now enlightened")
+        console.log(result.data)
+    }).catch((err) => {})
 })

@@ -21,9 +21,51 @@ module.exports = {
         res.status(200).send(randomFortune);
     },
 
-    getZen: (req, res) => {
+    postZen: (req, res) => {
         zenbase.push(req.body)
         res.status(200).send(zenbase)
     },
+
+    putMind: (req, res) => {
+        let name = req.query.name
+
+        let index
+
+        for (let i = 0; i < zenbase.length; i++){
+            let currentName = zenbase[i].name
+
+            if(currentName === name){
+                index = i
+            }
+        }
+
+        if(index === undefined) {
+            res.status(400).send("NO DICE")
+        } else {
+            zenbase[index].temperament += "nirvana"
+            res.status(200).send(zenbase)
+        }
+    },
+
+    achieveOne: (req, res) => {
+        let name = req.params.name
+
+        let index
+
+        for (let i = 0; i < zenbase.length; i++){
+            let currentName = zenbase[i].name
+
+            if(currentName === name){
+                index = i
+            }
+        }
+
+        if(index === undefined) {
+            res.status(400).send(zenbase)
+        } else {
+            zenbase.splice(index, 1)
+            res.status(200).send(zenbase)
+        }
+    }
 
 }
