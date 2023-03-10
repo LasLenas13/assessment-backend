@@ -1,3 +1,5 @@
+let zenbase = []
+
 module.exports = {
 
     getCompliment: (req, res) => {
@@ -17,6 +19,11 @@ module.exports = {
         let randomFortune = fortune[randomData];
       
         res.status(200).send(randomFortune);
-    }
+    },
+
+    getZen: (req, res) => {
+        zenbase.push(req.body)
+        res.status(200).send(zenbase)
+    },
 
 }

@@ -1,6 +1,14 @@
 const complimentBtn = document.getElementById("complimentButton")
 let fortuneButton = document.getElementById("fortuneBtn")
 
+let zenForm = document.getElementById("zen-form")
+let mindForm = document.getElementById("mind-form")
+let oneForm = document.getElementById("one-form")
+let zenName = document.getElementById("post-name")
+let zenTemp = document.getElementById("post-temp")
+let improveMind = document.getElementById("put-mind")
+let oneNess = document.getElementById("delete-name")
+
 
 const getCompliment = () => {
     axios.get("http://localhost:4000/api/compliment/")
@@ -19,5 +27,17 @@ const getFortune = () => {
 };
 
 complimentBtn.addEventListener('click', getCompliment)
-
 fortuneButton.addEventListener('click', getFortune)
+
+zenForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const zenBody ={
+        name: zenName.value,
+        temperament: zenTemp.value,
+    }
+
+    axios.post("http://localhost:4000/zen", zenForm).then(() => {
+        console.log("backend up")
+    })
+})
