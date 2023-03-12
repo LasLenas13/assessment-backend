@@ -37,10 +37,12 @@ zenForm.addEventListener('submit', (event) => {
         temperament: zenTemp.value,
     }
 
-    axios.post("http://localhost:4000/api/zen", zenBody).then((result) => {
+    axios.post("http://localhost:4000/api/zen", zenBody)
+        .then((result) => {
         alert("New Mind State")
         console.log(result.data)
-    }).catch((err) => {})
+    })
+    .catch((err) => {})
 })
 
 mindForm.addEventListener("submit", (event) => {
@@ -48,21 +50,23 @@ mindForm.addEventListener("submit", (event) => {
 
     let name = improveMind.value
 
-    axios.put("http://localhost:4000/api/mindful?name=" + name)
-    .then((result) => {
+    axios.put("http://localhost:4000/api/mindfulness?name=" + name)
+        .then((result) => {
         alert(name + "one step closer to Nirvana")
         console.log(result.data)
-    }).catch((err) => {})
+    })
+    // .catch((err) => {})
 })
 
 oneForm.addEventListener("submit", (event) => {
     event.preventDefault()
 
-    let name = oneNess.value
+    let nameTwo = oneNess.value
 
-    axios.delete("http://localhost:4000/api/oneness/" + name)
-    .then((result) => {
-        alert(name + "is now enlightened")
+    axios.delete("http://localhost:4000/api/oneness/" + nameTwo)
+        .then((result) => {
+        alert(nameTwo + "is now enlightened")
         console.log(result.data)
-    }).catch((err) => {})
+    })
+    .catch((err) => {})
 })

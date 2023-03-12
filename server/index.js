@@ -15,7 +15,7 @@ app.get("/api/fortune", getFortune);
 
 app.post("/api/zen", postZen);
 
-app.put("/api/mindful", putMind);
+app.put("/api/mindfulness", putMind);
 
 app.delete("/api/oneness/:name", achieveOne);
 
